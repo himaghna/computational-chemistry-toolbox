@@ -1,2 +1,4 @@
 test.py
-*.log
+.vscode/settings.json
+__pycache__/helper_functions.cpython-37.pyc
+*.pyc
