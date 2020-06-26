@@ -1,5 +1,5 @@
 from read_gaussian_phosphine_structure import *
-from helper_functions import get_phosphine_carbon_numbers, truncate_pre_optimized, truncate_to_mulliken
+from helper_functions import *
 
 #truncate pre-optimization so that parser does not get caught up on initial setup
 path = r'example_output.log'
@@ -16,3 +16,7 @@ assert get_C_P_C_bond_angles(path,['2','15','28']) == [109.8925, 104.4816, 100.6
 path = truncate_to_mulliken(path)
 
 assert get_mulliken_charges(path,['2','15','28']) == [0.227783, -0.399331, -0.409120, -0.232924], print(get_mulliken_charges(path,['2','15','28']))
+
+path = truncate_to_APT(path)
+
+assert get_APT_charges(path,['2','15','28']) == [0.480742, -0.025829, 0.005156, -0.101836], print(get_APT_charges(path,['2','15','28']))

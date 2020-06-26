@@ -60,3 +60,22 @@ def get_mulliken_charges(filename,Catomids):
             get_descriptor(filename, # C3
                 r'\s*?{}  C\s*?(.?.\.......)\n'.format(Catomids[2]),
                "C{} mulliken charge".format(Catomids[2]))]
+
+
+def get_APT_charges(filename,Catomids):
+    """
+    Be sure to truncate file with both truncate functions before entry, 
+    as desired APT charges are listed first AFTER optimization
+    """
+    return [get_descriptor(filename, # P
+                r'    1  P\s*?(.?.\.......)\n',
+                "P1 APT charge"),
+            get_descriptor(filename, # C1
+                r'\s*?{}  C\s*?(.?.\.......)\n'.format(Catomids[0]),
+                "C{} APT charge".format(Catomids[0])),
+            get_descriptor(filename, #C2
+                r'\s*?{}  C\s*?(.?.\.......)\n'.format(Catomids[1]),
+                "C{} APT charge".format(Catomids[1])),
+            get_descriptor(filename, # C3
+                r'\s*?{}  C\s*?(.?.\.......)\n'.format(Catomids[2]),
+               "C{} APT charge".format(Catomids[2]))]

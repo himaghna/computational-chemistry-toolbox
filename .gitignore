@@ -2,3 +2,6 @@ test.py
 .vscode/settings.json
 __pycache__/helper_functions.cpython-37.pyc
 *.pyc
+example_output_opt_mul_APT.log
+example_output_opt.log
+example_output_opt_mul.log

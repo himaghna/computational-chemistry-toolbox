@@ -32,13 +32,10 @@ def get_phosphine_carbon_numbers(filename):
         r' ! R3    R\(1,(.*)\).*?',
         "carbon 3 id number")))]
 
-def truncate_pre_optimized(filename):
-    """
-    trims part of file which includes pre-optimized values
-    """
+def truncate_to(filename,regex,outfilename):
     with open(filename) as file:
         filedata = file.readlines()
-    pattern = re.compile(r'Optimization complete.')
+    pattern = re.compile(regex)
     idx = 0
     begin = 0
     for line in filedata:
@@ -48,26 +45,24 @@ def truncate_pre_optimized(filename):
             break
         else:
             idx = idx + 1
-    with open(filename.replace(".log","") + "_truncated.log",'w') as file:
+    with open(filename.replace(".log","") + "_{}.log".format(outfilename),'w') as file:
         file.writelines(filedata[(begin+1):])
-    return filename.replace(".log","") + "_truncated.log"
+    return filename.replace(".log","") + "_{}.log".format(outfilename)
+
+def truncate_pre_optimized(filename):
+    """
+    trims part of file which includes pre-optimized values
+    """
+    return truncate_to(filename,r'Optimization complete.',"opt")
 
 def truncate_to_mulliken(filename):
     """
     trims part of file which includes pre-optimized values and location matrix
     """
-    with open(filename) as file:
-        filedata = file.readlines()
-    pattern = re.compile(r'Mulliken charges:')
-    idx = 0
-    begin = 0
-    for line in filedata:
-        m = pattern.search(line)
-        if m:
-            begin = idx
-            break
-        else:
-            idx = idx + 1
-    with open(filename.replace(".log","") + "_mullikentruncated.log",'w') as file:
-        file.writelines(filedata[(begin+1):])
-    return filename.replace(".log","") + "_mullikentruncated.log"
+    return truncate_to(filename,r'Mulliken charges:',"mul")
+
+def truncate_to_APT(filename):
+    """
+    trims part of file which includes pre-optimized values and location matrix
+    """
+    return truncate_to(filename,r' APT charges:',"APT")
