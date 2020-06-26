@@ -45,7 +45,29 @@ def truncate_pre_optimized(filename):
         m = pattern.search(line)
         if m:
             begin = idx
+            break
         else:
             idx = idx + 1
     with open(filename.replace(".log","") + "_truncated.log",'w') as file:
         file.writelines(filedata[(begin+1):])
+    return filename.replace(".log","") + "_truncated.log"
+
+def truncate_to_mulliken(filename):
+    """
+    trims part of file which includes pre-optimized values and location matrix
+    """
+    with open(filename) as file:
+        filedata = file.readlines()
+    pattern = re.compile(r'Mulliken charges:')
+    idx = 0
+    begin = 0
+    for line in filedata:
+        m = pattern.search(line)
+        if m:
+            begin = idx
+            break
+        else:
+            idx = idx + 1
+    with open(filename.replace(".log","") + "_mullikentruncated.log",'w') as file:
+        file.writelines(filedata[(begin+1):])
+    return filename.replace(".log","") + "_mullikentruncated.log"
