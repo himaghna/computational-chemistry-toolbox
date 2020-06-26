@@ -1,4 +1,3 @@
-
 import re
 
 def get_descriptor(filepath,regex,name):
