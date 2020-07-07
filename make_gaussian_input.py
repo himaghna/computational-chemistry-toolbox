@@ -86,7 +86,7 @@ def main():
         mkdir(output_dir)
     # create jobfolders and put jobs in them
     job_count = 0
-    for fpath in (glob.glob(os.path.join(input_dir, '*.xyz')):
+    for fpath in (glob.glob(os.path.join(input_dir, '*.xyz'))):
         fname = os.path.basename(fpath).replace('.xyz', '') # only fname no ext
         new_folderpath = os.path.join(output_dir, fname)
         try:
