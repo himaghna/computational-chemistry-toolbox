@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface version="1.0">
+  <object class="ttk.Frame" id="main_frame">
+    <property name="height">200</property>
+    <property name="takefocus">false</property>
+    <property name="width">200</property>
+    <layout manager="pack">
+      <property name="propagate">True</property>
+      <property name="side">top</property>
+    </layout>
+    <child>
+      <object class="ttk.Label" id="input_dir_label">
+        <property name="anchor">w</property>
+        <property name="takefocus">false</property>
+        <property name="text" translatable="yes">Directory Containing Gaussian Output Files</property>
+        <layout manager="pack">
+          <property name="propagate">True</property>
+          <property name="side">top</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Entry" id="input_directory">
+        <property name="cursor">based_arrow_down</property>
+        <property name="exportselection">true</property>
+        <property name="font">TkDefaultFont</property>
+        <property name="state">normal</property>
+        <property name="takefocus">false</property>
+        <property name="text" translatable="yes">input directory</property>
+        <property name="validate">none</property>
+        <layout manager="pack">
+          <property name="propagate">True</property>
+          <property name="side">top</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="output_name_label">
+        <property name="takefocus">false</property>
+        <property name="text" translatable="yes">Name for Output File</property>
+        <layout manager="pack">
+          <property name="propagate">True</property>
+          <property name="side">top</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Entry" id="output_name">
+        <property name="text" translatable="yes">output name</property>
+        <layout manager="pack">
+          <property name="propagate">True</property>
+          <property name="side">top</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="phosphine_properties_label">
+        <property name="text" translatable="yes">Phosphine Properties:</property>
+        <layout manager="pack">
+          <property name="propagate">True</property>
+          <property name="side">top</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Checkbutton" id="bondlength_button">
+        <property name="compound">top</property>
+        <property name="cursor">arrow</property>
+        <property name="text" translatable="yes">C-P Bond Lengths</property>
+        <layout manager="pack">
+          <property name="propagate">True</property>
+          <property name="side">top</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Checkbutton" id="bond_angle_button">
+        <property name="text" translatable="yes">C-P-C Bond Angles</property>
+        <layout manager="pack">
+          <property name="propagate">True</property>
+          <property name="side">top</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Checkbutton" id="mulliken_button">
+        <property name="compound">bottom</property>
+        <property name="cursor">based_arrow_up</property>
+        <property name="takefocus">true</property>
+        <property name="text" translatable="yes">Mulliken Charges</property>
+        <layout manager="pack">
+          <property name="propagate">True</property>
+          <property name="side">top</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Checkbutton" id="apt_button">
+        <property name="text" translatable="yes">APT Charges</property>
+        <layout manager="pack">
+          <property name="propagate">True</property>
+          <property name="side">top</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="electronic_properties_label">
+        <property name="compound">top</property>
+        <property name="text" translatable="yes">Electronic Properties:</property>
+        <layout manager="pack">
+          <property name="propagate">True</property>
+          <property name="side">top</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Checkbutton" id="zpe_button">
+        <property name="text" translatable="yes">ZPE</property>
+        <layout manager="pack">
+          <property name="propagate">True</property>
+          <property name="side">top</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Checkbutton" id="ezpe_button">
+        <property name="compound">top</property>
+        <property name="text" translatable="yes">Electronic ZPE</property>
+        <layout manager="pack">
+          <property name="propagate">True</property>
+          <property name="side">top</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Checkbutton" id="freenrg_button">
+        <property name="text" translatable="yes">Free Energy</property>
+        <layout manager="pack">
+          <property name="propagate">True</property>
+          <property name="side">top</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Checkbutton" id="enthalpy_button">
+        <property name="cursor">arrow</property>
+        <property name="state">normal</property>
+        <property name="text" translatable="yes">Enthalpy</property>
+        <layout manager="pack">
+          <property name="propagate">True</property>
+          <property name="side">top</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Button" id="go_button">
+        <property name="command">read_files</property>
+        <property name="compound">bottom</property>
+        <property name="cursor">based_arrow_up</property>
+        <property name="takefocus">false</property>
+        <property name="text" translatable="yes">Go</property>
+        <layout manager="pack">
+          <property name="propagate">True</property>
+          <property name="side">top</property>
+        </layout>
+      </object>
+    </child>
+  </object>
+</interface>

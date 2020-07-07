@@ -1,0 +1,14 @@
+# python/IDE implementation specific files
+.vscode/*
+__pycache__/*
+*.pyc
+
+# testing-related files
+test.py
+test_out.txt
+test_output.txt
+output name.txt
+
+# files associated with executable
+executable UI/*
+*.spec
