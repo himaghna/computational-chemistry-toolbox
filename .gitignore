@@ -10,5 +10,6 @@ test_output.txt
 output name.txt
 
 # files associated with executable
-executable UI/*
+build/*
+dist/*
 *.spec
