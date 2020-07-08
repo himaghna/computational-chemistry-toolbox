@@ -3,7 +3,9 @@
 ## generate executable output reader UI
 generate .exe file with the below command in the directory with this repo
 > pip install pyinstaller
+
 *(deliberately excluded from spec_file.txt, many installations likely to not use it)*
+
 > pyinstaller --onefile GaussianOutputReader.py
 
 ### Dependencies
@@ -17,4 +19,3 @@ Developer: Jackson Burns, Don Watson Lab. ([Personal Site](https://www.jacksonwa
 
 ### TODO
 - @JacksonBurns add custom icon to executable and tk window
-- @JacksonBurns Fix 'not found' not being written to output files
