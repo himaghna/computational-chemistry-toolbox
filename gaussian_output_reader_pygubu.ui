@@ -21,7 +21,6 @@
     </child>
     <child>
       <object class="ttk.Entry" id="input_directory">
-        <property name="cursor">based_arrow_down</property>
         <property name="exportselection">true</property>
         <property name="font">TkDefaultFont</property>
         <property name="state">normal</property>
@@ -29,6 +28,7 @@
         <property name="text" translatable="yes">input directory</property>
         <property name="validate">none</property>
         <layout manager="pack">
+          <property name="fill">both</property>
           <property name="propagate">True</property>
           <property name="side">top</property>
         </layout>
@@ -64,8 +64,7 @@
     </child>
     <child>
       <object class="ttk.Checkbutton" id="bondlength_button">
-        <property name="compound">top</property>
-        <property name="cursor">arrow</property>
+        <property name="state">normal</property>
         <property name="text" translatable="yes">C-P Bond Lengths</property>
         <layout manager="pack">
           <property name="propagate">True</property>
@@ -85,7 +84,6 @@
     <child>
       <object class="ttk.Checkbutton" id="mulliken_button">
         <property name="compound">bottom</property>
-        <property name="cursor">based_arrow_up</property>
         <property name="takefocus">true</property>
         <property name="text" translatable="yes">Mulliken Charges</property>
         <layout manager="pack">
@@ -156,7 +154,7 @@
       <object class="ttk.Button" id="go_button">
         <property name="command">read_files</property>
         <property name="compound">bottom</property>
-        <property name="cursor">based_arrow_up</property>
+        <property name="cursor">trek</property>
         <property name="takefocus">false</property>
         <property name="text" translatable="yes">Go</property>
         <layout manager="pack">
