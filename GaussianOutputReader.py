@@ -72,10 +72,10 @@ class GaussianOutputReader:
                 input_directory.get() + output_name.get() + ".txt", 'w'
             ) as outfile:
                 # write header
-                outfile.write("filename ")
+                outfile.write("filename\t")
                 if doBL: outfile.write("C1-P Bond Length\tC2-P Bond Length\tC3-P Bond Length\t")
                 if doBA: outfile.write("C1-P-C2 Bond Angle\tC1-P-C3 Bond Angle\tC2-P-C3 Bond Angle\t")
-                if doMUL: outfile.write("P Mulliken Charge\tC1 Mulliken Charge\tC2 Mulliken Charge C3\tMulliken Charge\t")
+                if doMUL: outfile.write("P Mulliken Charge\tC1 Mulliken Charge\tC2 Mulliken Charge\tC3 Mulliken Charge\t")
                 if doAPT: outfile.write("P APT Charge\tC1 APT Charge\tC2 APT Charge\tC3 APT Charge\t")
                 if doZPE: outfile.write("ZPE\t")
                 if doEZPE: outfile.write("Electronic ZPE\t")
@@ -99,21 +99,22 @@ class GaussianOutputReader:
                         # write each column
                         if doBL: 
                             temp = readphosphine.get_C_P_bond_lengths(truncpath,Catoms)
-                            outfile.write(("\t".join([str(i) for i in temp]) if not isinstance(temp,bool) else "not found")+"\t")
+                            # loop through and join with a tab. when False is found, write not found instead
+                            outfile.write("\t".join([(str(i) if not isinstance(i,bool) else "not found") for i in temp])+"\t")
 
                         if doBA: 
                             temp = readphosphine.get_C_P_C_bond_angles(truncpath,Catoms)
-                            outfile.write(("\t".join([str(i) for i in temp]) if not isinstance(temp,bool) else "not found")+"\t")
+                            outfile.write("\t".join([(str(i) if not isinstance(i,bool) else "not found") for i in temp])+"\t")
 
                         tempMUL = truncate_to_mulliken(truncpath)
                         if doMUL: 
                             temp = readphosphine.get_mulliken_charges(tempMUL,Catoms)
-                            outfile.write(("\t".join([str(i) for i in temp]) if not isinstance(temp,bool) else "not found")+"\t")
+                            outfile.write("\t".join([(str(i) if not isinstance(i,bool) else "not found") for i in temp])+"\t")
 
                         tempAPT = truncate_to_APT(tempMUL)
                         if doAPT: 
                             temp = readphosphine.get_APT_charges(tempAPT,Catoms)
-                            outfile.write(("\t".join([str(i) for i in temp]) if not isinstance(temp,bool) else "not found")+"\t")
+                            outfile.write("\t".join([(str(i) if not isinstance(i,bool) else "not found") for i in temp])+"\t")
 
                         if doZPE: 
                             temp = readelectronic.get_zpe(path)
