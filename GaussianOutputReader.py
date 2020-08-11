@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 import tkinter.ttk as ttk
 import os
 import read_gaussian_logfile_electronic as readelectronic
@@ -137,7 +138,13 @@ class GaussianOutputReader:
                         os.remove(truncpath)
                         os.remove(tempAPT)
                         os.remove(tempMUL)
-                        
+            if os.path.isfile(input_directory.get() + output_name.get() + ".txt"):
+                msg = "Data successfully written to " + input_directory.get() + output_name.get() + ".txt"
+                messagebox.showinfo(title="Data Written", message=msg)
+            else:
+                # likely causes - directory user does not have write access to or directory does not exist
+                msg = "Data could not be written! Ensure you have write permission to the input directory and that the directory exists."
+                messagebox.showerror(title="Output Error!", message=msg)
 
         
         go_button = ttk.Button(main_frame)
