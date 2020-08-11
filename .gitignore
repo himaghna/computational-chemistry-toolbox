@@ -8,6 +8,9 @@ test.py
 test_out.txt
 test_output.txt
 output name.txt
+example_output_opt.log
+example_output_opt_mul.log
+example_output_opt_mul_APT.log
 
 # files associated with executable
 executable UI/*

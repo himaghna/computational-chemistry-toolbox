@@ -4,7 +4,8 @@ import tkinter.ttk as ttk
 import os
 import read_gaussian_logfile_electronic as readelectronic
 import read_gaussian_phosphine_structure as readphosphine
-from helper_functions import get_phosphine_carbon_numbers as getphosC
+from helper_functions import get_phosphine_atom_numbers as getphosAs
+from helper_functions import get_phosphine_phosphorus_number as getphosP
 from helper_functions import truncate_to_mulliken, truncate_to_APT, truncate_pre_optimized
 
 class GaussianOutputReader:
@@ -74,10 +75,10 @@ class GaussianOutputReader:
             ) as outfile:
                 # write header
                 outfile.write("filename\t")
-                if doBL: outfile.write("C1-P Bond Length\tC2-P Bond Length\tC3-P Bond Length\t")
-                if doBA: outfile.write("C1-P-C2 Bond Angle\tC1-P-C3 Bond Angle\tC2-P-C3 Bond Angle\t")
-                if doMUL: outfile.write("P Mulliken Charge\tC1 Mulliken Charge\tC2 Mulliken Charge\tC3 Mulliken Charge\t")
-                if doAPT: outfile.write("P APT Charge\tC1 APT Charge\tC2 APT Charge\tC3 APT Charge\t")
+                if doBL: outfile.write("A1-P Bond Length\tA2-P Bond Length\tA3-P Bond Length\t")
+                if doBA: outfile.write("A1-P-A2 Bond Angle\tA1-P-A3 Bond Angle\tA2-P-A3 Bond Angle\t")
+                if doMUL: outfile.write("P Mulliken Charge\tA1 Mulliken Charge\tA2 Mulliken Charge\tA3 Mulliken Charge\t")
+                if doAPT: outfile.write("P APT Charge\tA1 APT Charge\tA2 APT Charge\tA3 APT Charge\t")
                 if doZPE: outfile.write("ZPE\t")
                 if doEZPE: outfile.write("Electronic ZPE\t")
                 if doFNRG: outfile.write("Free Energy\t")
@@ -88,6 +89,7 @@ class GaussianOutputReader:
                     # only search gaussian output files
                     if filename.endswith(".log"):
                         outfile.write(filename+"\t")
+                        print("Parsing {}...".format(filename))
                         # arguments for each finding functions
                         path = input_directory.get() + filename
                         try:
@@ -95,26 +97,27 @@ class GaussianOutputReader:
                         except FileNotFoundError:
                             outfile.writelines("Unable to parse!")
                             continue
-                        Catoms = getphosC(path)
+                        Pid = getphosP(path)
+                        Cids = getphosAs(path,Pid)
 
                         # write each column
                         if doBL: 
-                            temp = readphosphine.get_C_P_bond_lengths(truncpath,Catoms)
+                            temp = readphosphine.get_A_P_bond_lengths(truncpath,Cids,Pid)
                             # loop through and join with a tab. when False is found, write not found instead
                             outfile.write("\t".join([(str(i) if not isinstance(i,bool) else "not found") for i in temp])+"\t")
 
                         if doBA: 
-                            temp = readphosphine.get_C_P_C_bond_angles(truncpath,Catoms)
+                            temp = readphosphine.get_A_P_A_bond_angles(truncpath,Cids,Pid)
                             outfile.write("\t".join([(str(i) if not isinstance(i,bool) else "not found") for i in temp])+"\t")
 
                         tempMUL = truncate_to_mulliken(truncpath)
                         if doMUL: 
-                            temp = readphosphine.get_mulliken_charges(tempMUL,Catoms)
+                            temp = readphosphine.get_mulliken_charges(tempMUL,Cids,Pid)
                             outfile.write("\t".join([(str(i) if not isinstance(i,bool) else "not found") for i in temp])+"\t")
 
                         tempAPT = truncate_to_APT(tempMUL)
                         if doAPT: 
-                            temp = readphosphine.get_APT_charges(tempAPT,Catoms)
+                            temp = readphosphine.get_APT_charges(tempAPT,Cids,Pid)
                             outfile.write("\t".join([(str(i) if not isinstance(i,bool) else "not found") for i in temp])+"\t")
 
                         if doZPE: 

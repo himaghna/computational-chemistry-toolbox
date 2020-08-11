@@ -17,20 +17,35 @@ def get_descriptor(filepath,regex,name):
         m = pattern.search(line)
         if m:
             # match found
+            #
             return float(m[1])
     print(name+" not found!")
     return False
 
-def get_phosphine_carbon_numbers(filename):
-    return [str(int(get_descriptor(filename, # carbon 1
-        r' ! R1    R\(1,(.*)\).*?',
-        "carbon 1 id number"))),
-        str(int(get_descriptor(filename, # carbon 2
-        r' ! R2    R\(1,(.*)\).*?',
-        "carbon 2 id number"))),
-        str(int(get_descriptor(filename, # carbon 3
-        r' ! R3    R\(1,(.*)\).*?',
-        "carbon 3 id number")))]
+def get_phosphine_phosphorus_number(filename):
+    """
+    returns gaussian atom id for the phosphorus atom.
+
+    Assumes that the central phoshine phosphorus is the only P in the molecule, or that it at least appears before any others.
+    """
+    return str(int(get_descriptor(filename,
+        r'     (\d+)  P    .*?',
+        # r'     (.*)  P.*?',
+        "phosphorus id number")))
+
+def get_phosphine_atom_numbers(filename, phosid):
+    """
+    returns array of gaussian atom ID's for the 3 atoms attached to phosphorus.
+    """
+    return [str(int(get_descriptor(filename, # atom 1
+        r' ! R1    R\({},(\d+)\).*?'.format(phosid),
+        "atom 1 id number"))),
+        str(int(get_descriptor(filename, # atom 2
+        r' ! R2    R\({},(\d+)\).*?'.format(phosid),
+        "atom 2 id number"))),
+        str(int(get_descriptor(filename, # atom 3
+        r' ! R3    R\({},(\d+)\).*?'.format(phosid),
+        "atom 3 id number")))]
 
 def truncate_to(filename,regex,outfilename):
     with open(filename) as file:
