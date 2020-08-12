@@ -19,10 +19,7 @@
             elec_zep = get_electronic_zpe(gaussian_fname)
 """
 
-
-import os.path
-from argparse import ArgumentParser
-from helper_functions import get_descriptor
+from tools.helper_functions import get_descriptor
 
 def get_zpe(filepath):
     """
@@ -64,5 +61,3 @@ def get_enthalpy(filepath):
     return get_descriptor(filepath,
         r'Sum of electronic and thermal Enthalpies=[ ]*(-?\d+\.?\d+)',
         "enthalpy")
-
-# 'D:\Research\Error_DFT\Data_fusion\Jobs' -qf 'D:\Research\Error_DFT\Data_fusion\QM9\xyz_choose_2000_for_gaussian'

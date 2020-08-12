@@ -2,11 +2,12 @@ import tkinter as tk
 from tkinter import messagebox
 import tkinter.ttk as ttk
 import os
-import read_gaussian_logfile_electronic as readelectronic
-import read_gaussian_phosphine_structure as readphosphine
-from helper_functions import get_phosphine_atom_numbers as getphosAs
-from helper_functions import get_phosphine_phosphorus_number as getphosP
-from helper_functions import truncate_to_mulliken, truncate_to_APT, truncate_pre_optimized
+from tools.helper_functions import get_phosphine_phosphorus_number as getphosP
+from tools.helper_functions import get_phosphine_atom_numbers as getphosAs
+from tools.helper_functions import truncate_to_mulliken, truncate_to_APT, truncate_pre_optimized
+from tools import read_gaussian_logfile_electronic as readelectronic
+from tools import read_gaussian_phosphine_structure as readphosphine
+
 
 class GaussianOutputReader:
     def __init__(self, master=None):

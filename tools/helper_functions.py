@@ -17,7 +17,10 @@ def get_descriptor(filepath,regex,name):
         m = pattern.search(line)
         if m:
             # match found
-            #
+            # print(line)
+            # print(m)
+            # print(m[1])
+            # print(float(m[1]))
             return float(m[1])
     print(name+" not found!")
     return False

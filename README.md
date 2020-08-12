@@ -12,6 +12,8 @@ generate .exe file with the below command in the directory with this repo
 Use the below command to generate a working environment:
 > conda create --name --file spec-file.txt
 
+The spec file can be found in the *other* directory.
+
 ### Credits and Licensing
 Developer: Himaghna Bhattacharjee, Vlachos Research Lab. (www.linkedin.com/in/himaghna-bhattacharjee)
 

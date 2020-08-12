@@ -1,4 +1,4 @@
-from helper_functions import get_descriptor
+from tools.helper_functions import get_descriptor
 
 """
 The following properties are listed in each gaussian output file
